@@ -1,0 +1,49 @@
+.search {
+    background: url(./bg1.jpg) center center / cover no-repeat;
+    padding:30px 0;
+    &__title {
+        color:#fff;
+        font-size: 40px;
+        text-align: center;
+    }
+    &__form {
+        margin-top: 20px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+    &__input, &__button, &__select {
+        border-radius: 5px;
+        &:focus {
+            outline: none;
+        }
+    }
+    &__input {
+        width:500px;
+        height:40px;
+        padding-left: 20px;
+        border:2px solid #C8C8C8;
+    }
+    &__button {
+        height: 40px;
+        margin-left: 10px;
+        background-color: #7CC576;
+        color:#fff;
+        border:none;
+    }
+    &__filter {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        label {
+            margin: 0 10px;
+            font-size: 20px;
+            color:#fff;
+        }
+    }
+    &__select {
+        min-width:250px;
+        padding:5px;
+    }
+}

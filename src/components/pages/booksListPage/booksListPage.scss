@@ -1,0 +1,12 @@
+.booksList {
+    padding: 40px 20px;
+    background-color: #fff;
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        grid-auto-rows: auto;
+        justify-items: center;
+        gap:20px;
+    }
+}
