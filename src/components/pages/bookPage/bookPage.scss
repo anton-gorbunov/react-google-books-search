@@ -1,35 +1,36 @@
 .book {
-    padding:40px 20px;
-    background: #fff;
+    padding:40px 70px;
     &__title {
         text-align: center;
     }
     &__wrapper {
         margin-top: 40px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 3fr;
         grid-template-rows: auto;
         grid-auto-rows: auto;
-        justify-items: center;
     }
     &__img {
-        width:40%;
+        width:150px;
+        justify-self: center;
         img{
             width:100%;
+            box-shadow: 6px 6px 10px #676767 ;
         }
     }
     &__descr {
-        justify-self: flex-start;
         td {
-            padding:10px;
+            padding:5px 10px;
             &:first-child{
                 color:#676767;
-                font-size: 20px;
-            }
-            &:last-child {
-                font-size: 20px;
-                font-weight: 700;
+                font-size: 14px;
+                vertical-align: baseline;
             }
         }
+    }
+    &__text {
+        font-size: 16px;
+        line-height: 30px;
+        margin-top: 40px;
     }
 }

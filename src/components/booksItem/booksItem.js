@@ -1,18 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {getFirstCategory, getShortTitle} from '../../libs/functions';
 
 import './booksItem.scss';
 
-const BooksItem = () => {
+const BooksItem = ({data}) => {
+    const {id, authors, category, img, title} = data;
     return (
             <div className="bookItem">
-                <Link to={`/book/${1}`} className="bookItem__link">
+                <Link to={`/book/${id}`} className="bookItem__link">
                     <div className="bookItem__img">
-                        <img src="http://vnikitskom.ru/wp-content/uploads/132-038-966-D-60-D112046.jpg" alt="book"/>
+                        <img src={img} alt="book"/>
                     </div>
-                    <div className="bookItem__category">Computers</div>
-                    <h2 className="bookItem__title">Title</h2>
-                    <div className="bookItem__author">Дэвид Херрон</div>
+                    <div className="bookItem__category">{getFirstCategory(category)}</div>
+                    <h2 className="bookItem__title">{getShortTitle(title)}</h2>
+                    <div className="bookItem__author">{authors}</div>
                 </Link>
             </div>
         

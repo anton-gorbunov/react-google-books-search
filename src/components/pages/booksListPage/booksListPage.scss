@@ -1,12 +1,24 @@
 .booksList {
     padding: 40px 20px;
-    background-color: #fff;
+    &__title {
+        text-align: center;
+    }
     &__wrapper {
+        margin-top: 40px;
         display: grid;
         grid-template-columns: repeat(4,1fr);
         grid-template-rows: auto;
         grid-auto-rows: auto;
         justify-items: center;
+        align-content: center;
         gap:20px;
+    }
+    &__error {
+        text-align: center;
+        margin-top: 40px;
+    }
+    &__button {
+        display: block;
+        margin: 50px auto;
     }
 }

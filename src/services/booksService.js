@@ -1,13 +1,30 @@
 export default class BooksService {
-    _apiKey = 'AIzaSyBVJaRtiq4DoefERkWjxgY6aDZ-PhF-gqs';
-    _apiBase = 'https://www.googleapis.com/books/v1/volumes?q='
+    _apiKey = 'apiKey=AIzaSyBt4OMoKgOsW2w2-Q4OvA86lC_Y1D1od_4';
+    _apiBase = 'https://www.googleapis.com/books/v1/volumes';
 
-    getResource = async (term) => {
-        const result = await fetch(`${this._apiBase}${term}`);
+    getResource = async(url) => {
+        const result = await fetch(url);
         if (!result.ok) {
-            throw new Error(`Could not fetch url: ${this._apiBase}, status: ${result.status}`);
+            throw new Error(`Could not fetch url: ${url}, status: ${result.status}`);
         }
         return await result.json();
+    }
+    getBooks = async({searchValue, sort, category}, booksIndex) => {
+        let categ;
+        if (category === 'all') {
+            categ = ''
+        } else {
+            categ = `+subject=${category}`
+        }
+        const result = await this.getResource(`${this._apiBase}?q=${searchValue}${categ}&orderBy=${sort}&${this._apiKey}&startIndex=${booksIndex}&maxResults=30`);
+        if (!result.items) {
+            return null;
+        }
+        return await result;
+    }
+    getBook = async(id) => {
+        const result = await this.getResource(`${this._apiBase}/${id}?${this._apiKey}`);
+        return result;
     }
 }
 
