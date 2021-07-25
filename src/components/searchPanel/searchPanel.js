@@ -40,6 +40,7 @@ const SearchPanel = ({setSearchValues}) => {
                         placeholder="Search..."
                         value={inpValue}
                         onChange={(e) => setInpValue(e.target.value)}
+                        required
                     />
                     <button className="search__button button">Search</button>
                     </div>

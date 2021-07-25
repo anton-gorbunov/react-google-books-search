@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {getFirstCategory, getShortTitle} from '../../libs/functions';
 
-
 import './booksItem.scss';
 
 const BooksItem = ({data}) => {
@@ -29,4 +28,5 @@ BooksItem.propTypes = {
     img: PropTypes.string,
     title: PropTypes.string
 }
+
 export default BooksItem;

@@ -47,9 +47,7 @@ const BooksListPage = ({booksLoaded, booksRequested,fetchData,fetchError, error,
     return (
         <section className="booksList">
             <div className="container">
-                <h2 className="booksList__title">
-                    {books.length !== 0 ? `Found ${totalItems} results` : null}
-                </h2>
+                {books.length !== 0 ? <h2 className="booksList__title">{`Found ${totalItems} results`}</h2> :null}
                 <div className="booksList__wrapper">
                     {books.map((item, i) => {
                         return (
