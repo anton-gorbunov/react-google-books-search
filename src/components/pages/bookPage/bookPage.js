@@ -1,29 +1,34 @@
 import React, {useEffect} from 'react';
-import BooksService from '../../../services/booksService';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {booksRequested, bookLoaded} from '../../../actions/actions';
+import {booksRequested, bookLoaded, fetchError} from '../../../actions/actions';
+import BooksService from '../../../services/booksService';
 import Spinner from '../../spinner/spinner';
-import {getStrFromArr} from '../../../libs/functions';
+import Error from '../../error/error';
 
 import './bookPage.scss';
 
-const BookPage = ({match, booksRequested, loading, bookLoaded, book, fetching}) => {
+const BookPage = ({match, booksRequested,fetchError, loading, error, bookLoaded, book, fetching}) => {
     useEffect(() => {
         booksRequested();
         new BooksService().getBook(match.params.id)
-        .then(res => bookLoaded(res));
-    }, [match.params.id, booksRequested, bookLoaded]);
+        .then(res => bookLoaded(res))
+        .catch(() => fetchError());
+    }, [match.params.id, booksRequested, bookLoaded, fetchError]);
     
-    const {authors, category, descr, img, language, publishedDate, title} = book;
-
     if (fetching) {
         return <Redirect to='/'/>
     }
     if (loading) {
         return <Spinner/>
     }
+    if (error) {
+        return <Error/>
+    }
 
+    const {authors, category, descr, img, language, publishedDate, title} = book;
+   
     return (
         <section className="book">
             <div className="container">
@@ -37,7 +42,7 @@ const BookPage = ({match, booksRequested, loading, bookLoaded, book, fetching}) 
                             <tbody>
                                 <tr>
                                     <td>Category:</td>
-                                    <td>{getStrFromArr(category)}</td>
+                                    <td>{category}</td>
                                 </tr>
                                 <tr>
                                     <td>Title:</td>
@@ -69,12 +74,24 @@ const mapStateToProps = (state) => {
     return {
         book: state.book,
         loading: state.loading,
-        fetching:state.fetching
+        fetching:state.fetching,
+        error: state.fetchError
     }
 }
 const mapDispatchToProps = {
     booksRequested,
-    bookLoaded
+    bookLoaded, 
+    fetchError
+}
+
+BookPage.propTypes = {
+    booksRequested: PropTypes.func,
+    bookLoaded: PropTypes.func,
+    fetchError: PropTypes.func,
+    book: PropTypes.object,
+    loading: PropTypes.bool,
+    fetching: PropTypes.bool,
+    error: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookPage);

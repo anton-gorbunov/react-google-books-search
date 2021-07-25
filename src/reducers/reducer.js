@@ -1,12 +1,14 @@
-import { transformBooks } from "../libs/functions"
+import {transformBooks} from '../libs/functions';
+
 const initialState = {
     books: [],
     book: {},
     loading: false,
     searchValues: {},
     searchError:false,
-    totalItems:null,
-    fetching: false
+    totalItems:0,
+    fetching: false,
+    fetchError: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,9 +18,10 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     books:[...state.books, ...action.payload.items.map(item => transformBooks(item))],
-                    loading:false,
                     totalItems: action.payload.totalItems,
-                    fetching:false
+                    loading:false,
+                    fetching:false,
+                    fetchError:false
                 }
             }
             return {
@@ -26,18 +29,17 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 searchError: true
             }
-        case 'BOOKS_REQUESTED':
-            return {
-                ...state,
-                loading: true,
-                searchError:false,
-                
-            }
         case 'BOOK_LOADED':
             return {
                 ...state,
                 loading:false,
                 book: transformBooks(action.payload)
+            }
+        case 'BOOKS_REQUESTED':
+            return {
+                ...state,
+                loading: true,
+                searchError:false
             }
         case 'SET_SEARCH_VALUES' : 
             return {
@@ -49,7 +51,12 @@ const reducer = (state = initialState, action) => {
         case 'FETCH_DATA' :
             return {
                 ...state,
-                fetching: action.payload
+                fetching: true
+            }
+        case 'FETCH_ERROR' :
+            return {
+                loading: false,
+                fetchError: true
             }
         default:
             return state;

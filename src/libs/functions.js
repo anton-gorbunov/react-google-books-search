@@ -47,7 +47,7 @@ const getShortTitle = (str) => {
 const transformBooks = (book) => {
     return {
         id:book.id,
-        category: isSet(book.volumeInfo.categories),
+        category: getStrFromArr(book.volumeInfo.categories),
         title:isSet(book.volumeInfo.title),
         language:isSet(book.volumeInfo.language),
         authors:getStrFromArr(book.volumeInfo.authors),

@@ -10,13 +10,8 @@ export default class BooksService {
         return await result.json();
     }
     getBooks = async({searchValue, sort, category}, booksIndex) => {
-        let categ;
-        if (category === 'all') {
-            categ = '';
-        } else {
-            categ = `+subject=${category}`;
-        }
-        const result = await this.getResource(`${this._apiBase}?q=${searchValue}${categ}&orderBy=${sort}&${this._apiKey}&startIndex=${booksIndex}&maxResults=30`);
+        const categories = category === 'all' ? '' : `+subject=${category}`;
+        const result = await this.getResource(`${this._apiBase}?q=${searchValue}${categories}&orderBy=${sort}&${this._apiKey}&startIndex=${booksIndex}&maxResults=30`);
         if (!result.items) {
             return null;
         }
@@ -24,7 +19,6 @@ export default class BooksService {
     }
     getBook = async(id) => {
         const result = await this.getResource(`${this._apiBase}/${id}?${this._apiKey}`);
-        return result;
+        return await result;
     }
 }
-

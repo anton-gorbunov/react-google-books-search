@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {getFirstCategory, getShortTitle} from '../../libs/functions';
+
 
 import './booksItem.scss';
 
@@ -17,8 +19,14 @@ const BooksItem = ({data}) => {
                     <div className="bookItem__author">{authors}</div>
                 </Link>
             </div>
-        
     )
 }
 
+BooksItem.propTypes = {
+    id: PropTypes.string,
+    authors: PropTypes.string,
+    category: PropTypes.string,
+    img: PropTypes.string,
+    title: PropTypes.string
+}
 export default BooksItem;

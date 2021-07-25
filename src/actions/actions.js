@@ -21,10 +21,14 @@ const setSearchValues = (search) => {
         payload:search
     }
 }
-const setFetchData = (bool) => {
+const fetchData = () => {
     return {
-        type: 'FETCH_DATA',
-        payload: bool
+        type: 'FETCH_DATA'
+    }
+}
+const fetchError = () => {
+    return {
+        type: 'FETCH_ERROR'
     }
 }
 
@@ -33,5 +37,6 @@ export {
     booksRequested,
     bookLoaded,
     setSearchValues,
-    setFetchData
+    fetchData,
+    fetchError
 }

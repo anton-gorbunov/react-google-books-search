@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useLocation} from 'react-router-dom';
 import {setSearchValues} from '../../actions/actions';
 
 import './searchPanel.scss';
 
-const SearchPanel = ({setSearchValues, }) => {
+const SearchPanel = ({setSearchValues}) => {
     const [inpValue, setInpValue] = useState('');
     const [category, setCategory] = useState('all');
     const [sort, setSort] = useState('relevance');
     const [activeClass, setActiveClass] = useState(true);
+    const location = useLocation();
+
     const categoryValues = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
     const sortValues = ['relevance', 'newest'];
-    const location = useLocation();
+    
     function onHandleSubmit(e) {
         e.preventDefault();
         setSearchValues({
@@ -72,6 +75,10 @@ const SearchPanel = ({setSearchValues, }) => {
 
 const mapDispatchToProps = {
     setSearchValues
+}
+
+SearchPanel.propTypes = {
+    setSearchValues: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(SearchPanel);
