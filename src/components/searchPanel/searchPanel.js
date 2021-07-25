@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {useLocation} from 'react-router-dom';
 import {setSearchValues} from '../../actions/actions';
 
 import './searchPanel.scss';
@@ -8,9 +9,10 @@ const SearchPanel = ({setSearchValues, }) => {
     const [inpValue, setInpValue] = useState('');
     const [category, setCategory] = useState('all');
     const [sort, setSort] = useState('relevance');
-    const [activeClass, setActiveClass] = useState(false);
+    const [activeClass, setActiveClass] = useState(true);
     const categoryValues = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
     const sortValues = ['relevance', 'newest'];
+    const location = useLocation();
     function onHandleSubmit(e) {
         e.preventDefault();
         setSearchValues({
@@ -21,10 +23,10 @@ const SearchPanel = ({setSearchValues, }) => {
         setInpValue('');
         setCategory('all');
         setSort('relevance');
-        setActiveClass(true);
+        setActiveClass(false);
     }
     return (
-        <section className={`search ${activeClass ? 'search_active': ''}`}>
+        <section className={`search ${activeClass && location.pathname === '/' ? 'search_active': ''}`}>
             <div className="container">
                 <h1 className="search__title">Search for books</h1>
                 <form className="search__form" onSubmit={onHandleSubmit}>
@@ -32,7 +34,7 @@ const SearchPanel = ({setSearchValues, }) => {
                     <input 
                         type="text" 
                         className="search__input"
-                        placeholder="Enter the name of the book"
+                        placeholder="Search..."
                         value={inpValue}
                         onChange={(e) => setInpValue(e.target.value)}
                     />

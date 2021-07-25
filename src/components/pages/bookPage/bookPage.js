@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react';
 import BooksService from '../../../services/booksService';
 import {connect} from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {booksRequested, bookLoaded} from '../../../actions/actions';
 import Spinner from '../../spinner/spinner';
 import {getStrFromArr} from '../../../libs/functions';
 
 import './bookPage.scss';
-
-
 
 const BookPage = ({match, booksRequested, loading, bookLoaded, book, fetching}) => {
     useEffect(() => {
@@ -18,6 +16,7 @@ const BookPage = ({match, booksRequested, loading, bookLoaded, book, fetching}) 
     }, [match.params.id, booksRequested, bookLoaded]);
     
     const {authors, category, descr, img, language, publishedDate, title} = book;
+
     if (fetching) {
         return <Redirect to='/'/>
     }

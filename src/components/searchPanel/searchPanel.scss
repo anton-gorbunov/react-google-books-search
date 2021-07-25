@@ -1,14 +1,13 @@
 .search {
     background: url(./bg1.jpg) center center / cover no-repeat;
     padding:30px 0;
-    height:100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height:250px;
     &_active {
-        animation: changeHeight;
-        animation-duration: 1s;
-        height:250px;
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
     }
     &__title {
         color:#fff;
@@ -60,12 +59,4 @@
         &:hover {
             background-color:#93E88B;
         }
-}
-@keyframes changeHeight {
-    from {
-        height:100vh;
-    }
-    to {
-        height:250px;
-    }
 }

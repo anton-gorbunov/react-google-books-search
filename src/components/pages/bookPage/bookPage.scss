@@ -9,6 +9,7 @@
         grid-template-columns: 1fr 3fr;
         grid-template-rows: auto;
         grid-auto-rows: auto;
+        align-items: center;
     }
     &__img {
         width:150px;
@@ -24,6 +25,7 @@
             &:first-child{
                 color:#676767;
                 font-size: 14px;
+                width:150px;
                 vertical-align: baseline;
             }
         }

@@ -29,10 +29,10 @@ const BookSListPage = ({booksLoaded, booksRequested,setFetchData, search, books,
             />
         );
     });
-    
+
     const button = (
         <button className="booksList__button button"onClick={onHandleClick}>Load more books</button>
-    )
+    );
     if (searchError) {
         return (
             <div className="container">
@@ -64,7 +64,6 @@ const mapStateToProps = (state) => {
         searchError: state.searchError,
         totalItems: state.totalItems,
         fetching: state.fetching
-
     }
 }
 const mapDispatchToProps = {

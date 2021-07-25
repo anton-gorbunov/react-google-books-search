@@ -12,9 +12,9 @@ export default class BooksService {
     getBooks = async({searchValue, sort, category}, booksIndex) => {
         let categ;
         if (category === 'all') {
-            categ = ''
+            categ = '';
         } else {
-            categ = `+subject=${category}`
+            categ = `+subject=${category}`;
         }
         const result = await this.getResource(`${this._apiBase}?q=${searchValue}${categ}&orderBy=${sort}&${this._apiKey}&startIndex=${booksIndex}&maxResults=30`);
         if (!result.items) {
