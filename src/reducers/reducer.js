@@ -14,20 +14,20 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case 'BOOKS_LOADED' :
-            if (action.payload) {
+            if (!action.payload) {
                 return {
                     ...state,
-                    books:[...state.books, ...action.payload.items.map(item => transformBooks(item))],
-                    totalItems: action.payload.totalItems,
-                    loading:false,
-                    fetching:false,
-                    fetchError:false
+                    loading: false,
+                    searchError: true
                 }
             }
             return {
                 ...state,
-                loading: false,
-                searchError: true
+                books:[...state.books, ...action.payload.items.map(item => transformBooks(item))],
+                totalItems: action.payload.totalItems,
+                loading:false,
+                fetching:false,
+                fetchError:false
             }
         case 'BOOK_LOADED':
             return {

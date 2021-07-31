@@ -6,14 +6,14 @@ const isSet = (data) => {
     }
 }
 const isImage = (img) => {
-    if (img === undefined) {
+    if (!img) {
         return 'https://i.pinimg.com/736x/c0/ce/2f/c0ce2fe2c02313f47c0757a7be80ed6e.jpg';
     } else {
         return img.thumbnail
     }
 }
 const getStrFromArr = (arr) => {
-    if(arr === undefined) {
+    if(!arr) {
         return '';
     } else if (arr instanceof Array){
         return arr.join(', ')
@@ -22,7 +22,7 @@ const getStrFromArr = (arr) => {
     }
 }
 const getFirstCategory = (categories) => {
-    if(categories === undefined) {
+    if(!categories) {
         return '';
     } else if (categories instanceof Array) {
         return categories[0];
@@ -31,7 +31,7 @@ const getFirstCategory = (categories) => {
     }
 }
 const changeDate = (date) => {
-    if (date === undefined) {
+    if (!date) {
         return '';
     } else {
         return date.split('-').reverse().join('.');
